@@ -23,10 +23,17 @@ jobs:
     - name: Build APK
       run: ./gradlew assembleRelease
     
+    - name: List all APK files
+      run: |
+        echo "=== Searching for APK files ==="
+        find . -name "*.apk" -type f
+        echo "=== Directory structure ==="
+        ls -la app/build/outputs/ || echo "Directory not found"
+    
     - name: Rename APK
       run: |
         mkdir -p output
-        cp app/build/outputs/apk/release/app-release.apk "output/Anime v2.apk"
+        find . -name "*.apk" -type f -exec cp {} "output/Anime v2.apk" \;
     
     - name: Upload APK
       uses: actions/upload-artifact@v4
