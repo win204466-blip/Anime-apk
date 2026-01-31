@@ -26,10 +26,10 @@ jobs:
     - name: Rename APK
       run: |
         mkdir -p output
-        find app/build/outputs/apk/release -name "*.apk" -exec cp {} output/Anime v2.apk \;
+        cp app/build/outputs/apk/release/app-release.apk "output/Anime v2.apk"
     
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: Anime v2
-        path: output/Anime v2.apk
+        path: "output/Anime v2.apk"
